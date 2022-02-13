@@ -1,0 +1,48 @@
+@import "../../variables";
+
+.cart-item {
+    display: flex;
+    border: 1px solid rgb(245, 245, 245);
+    background-color: rgb(255, 255, 255);
+    padding: 1rem;
+    box-shadow: $box-shadow;
+    margin-bottom: 1.5rem;
+    justify-content: space-between;
+    align-items: center;
+    &:hover {
+        box-shadow: $box-shadow_hover;
+    }
+    &__wrap-img {
+        width: 8rem;
+    }
+    &__wrap-img img {
+        width: 100%;
+        object-fit: contain;
+    }
+    &__description {
+        width: 40%;
+    }
+    .close {
+        opacity: 0.3;
+        width: 1rem;
+        height: 1rem;
+        cursor: pointer;
+    }
+    .close:hover {
+        opacity: 1;
+    }
+    .close:before, .close:after {
+        position: absolute;
+        content: ' ';
+        height: 1rem;
+        width: 0.1rem;
+        background-color: #333;
+    }
+    .close:before {
+        transform: rotate(45deg);
+    }
+    .close:after {
+        transform: rotate(-45deg);
+    }
+}
+

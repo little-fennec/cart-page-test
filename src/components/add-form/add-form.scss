@@ -1,0 +1,71 @@
+@import "../../variables";
+
+.add-form {
+  font-size: 1.2rem;
+  border: $item-border;
+  background-color: white;
+  padding: 1.5rem;
+  box-shadow: rgb(0 0 0 / 5%) 0 0 10px 0;
+  width: 27rem;
+  .product-item__wrap-img {
+    width: 5rem;
+    opacity: 0.5;
+    margin: 0 auto;
+  }
+  .add-item {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+  }
+  .wrap-form-group {
+    position: relative;
+    padding-bottom: 3rem;
+  }
+  .form-group {
+    margin: 2rem 0;
+    display: flex;
+    label {
+      margin-right: 1rem;
+    }
+    input {
+      display: block;
+      height: calc(2.25rem + 2px);
+      padding: 0.375rem 0.75rem;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      background-color: white;
+      background-clip: padding-box;
+      border: 1px solid #bdbdbd;
+      border-radius: 0.25rem;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    input::placeholder {
+      opacity: 0.6;
+      font-size: 0.8rem;
+    }
+    input:focus {
+      background-color: #fff;
+      border-color: $base-bg-color;
+      outline: 0;
+      box-shadow: 0 0 0.05rem 0.05rem $base-bg-color;
+    }
+    #price, #quantity {
+      width: 5rem;
+    }
+    #title {
+      width: 17rem;
+    }
+
+  }
+}
+[name = 'kitty'] {
+  width: 25rem;
+  height: max-content;
+  align-self: end;
+  margin: 0 auto;
+}
+.d-flex {
+  display: flex;
+}

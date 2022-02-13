@@ -1,0 +1,23 @@
+@import "../../variables";
+
+.cart-summary {
+  margin-left: auto;
+  margin-right: 0;
+  width: 20rem;
+  border: $item-border;
+  box-shadow: $box-shadow;
+  padding: 1.5rem;
+  &__title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: $item-border;
+  }
+  .btn {
+    margin-top: 1.5rem;
+  }
+}

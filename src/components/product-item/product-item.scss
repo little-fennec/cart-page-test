@@ -1,0 +1,29 @@
+@import "../../variables";
+
+.product-item {
+    width: 15rem;
+    margin: 0 1rem;
+    border: $item-border;
+    background-color: white;
+    padding: 0.5rem;
+    box-shadow: $box-shadow;
+    &:hover {
+        box-shadow: $box-shadow_hover;
+    }
+    &__wrap-img {
+        img {
+            width: 100%;
+        }
+    }
+    &__inf {
+        padding-bottom: 2rem;
+        position: relative;
+    }
+
+    .add-to-cart {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+}
+

@@ -1,0 +1,56 @@
+@import "../../variables";
+
+@mixin transform($property) {
+    -webkit-transform: $property;
+    -ms-transform: $property;
+    transform: $property;
+}
+
+.counter {
+    font-size: 2rem;
+    position: relative;
+    width: 7rem;
+    height: 3rem;
+    &-amount {
+        width: 3rem;
+        text-align: center;
+        font-size: 1rem;
+        border:none;
+        height: 100%;
+        position: absolute;
+        left: 50%;
+        @include transform(translate(-50%,0));
+    }
+    &-amount:hover {
+        cursor: auto;
+    }
+    &-amount:focus-visible {
+        border:none;
+        outline: 0;
+    }
+    .btn-minus, .btn-plus {
+        position: absolute;
+        color: $btn-text-color;
+        background: $base-bg-color;
+        width: 1.5rem;
+        height: 1.5rem;
+        z-index: 10;
+        cursor: pointer;
+        font-size: 1.5rem;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        border-radius: $border-radius;
+        border: none;
+        padding: 1rem;
+        top: 50%;
+        @include transform(translate(0,-50%));
+    }
+    .btn-minus {
+        left: 0;
+    }
+    .btn-plus {
+        right: 0;
+    }
+
+}
