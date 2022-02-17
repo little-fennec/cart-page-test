@@ -3,8 +3,44 @@
     {
       "id": 1,
       "title": "Velvet pet bed",
-      "price": 190,
-      "src": "./images/dog-bed.jpg"
+      "price": 90,
+      "src": "/images/dog-bed.jpg",
+      "bestseller": false
+    },
+    {
+      "id": 2,
+      "title": "Trixie koala dog toy",
+      "price": 25,
+      "src": "/images/koala.jpg",
+      "bestseller": false
+    },
+    {
+      "id": 3,
+      "title": "Mucki bird grass",
+      "price": 5,
+      "src": "/images/grass.jpg",
+      "bestseller": false
+    },
+    {
+      "id": 5,
+      "title": "Bunny dwarf HamsterDream",
+      "price": 20,
+      "src": "/images/bunny_food.jpg",
+      "bestseller": true
+    },
+    {
+      "id": 6,
+      "title": "Cat tree La Digue III",
+      "price": 150,
+      "src": "/images/Cat_tree.jpg",
+      "bestseller": true
+    },
+    {
+      "id": 7,
+      "title": "Trixie alpaca plush dog toy",
+      "price": 49,
+      "src": "/images/alpaca.jpg",
+      "bestseller": true
     }
   ]
 }

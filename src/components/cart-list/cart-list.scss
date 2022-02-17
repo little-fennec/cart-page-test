@@ -1,0 +1,12 @@
+.cart-list {
+  position: relative;
+  &__clear-all {
+    cursor: pointer;
+    color: #c2c2c2;
+    position: absolute;
+    right: 0;
+    top: -3rem;
+  }
+}
+
+

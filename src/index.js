@@ -21,5 +21,6 @@ ReactDOM.render(
                 </Router>
             </StoreServiceContext.Provider>
         </ErrorBoundry>
-    </Provider>
-    , document.getElementById('root'));
+    </Provider>,
+    document.getElementById('root')
+);
