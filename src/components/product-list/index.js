@@ -9,14 +9,14 @@ import Error from '../error';
 
 import './product-list.scss';
 
-
-
 const ProductList = ({items, loading, error, StoreService, itemsLoaded, itemsError, itemsRequested, itemAddedToCart}) => {
 
     useEffect(() => {
         itemsRequested();
         StoreService.getItems()
-            .then(res => itemsLoaded(res))
+            .then(res => {
+                itemsLoaded(res.items);
+            } )
             .catch((err) => itemsError(err));
     },[]);
     if (loading) {
@@ -39,7 +39,6 @@ const ProductList = ({items, loading, error, StoreService, itemsLoaded, itemsErr
     )
 };
 
-
 const mapStateToProps = (state) => {
     const filteredItems = state.items.filter((item) => item.bestseller === true);
     return {
@@ -49,16 +48,6 @@ const mapStateToProps = (state) => {
     }
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         itemsLoaded: (newItems) => {
-//             dispatch({
-//                 type: 'FETCH_ITEMS_SUCCESS',
-//                 payload: newItems
-//             })
-//         }
-//     }
-// }
 
 const mapDispatchToProps = {
     itemsLoaded,

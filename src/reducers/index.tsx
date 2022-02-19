@@ -5,8 +5,7 @@ type actionType  =
     | { type: "ITEM_REMOVED_FROM_CART"; payload: number }
     | { type: "ALL_ITEMS_REMOVED_FROM_CART"; payload: number}
     | { type: "CLEAR_CART" }
-    | { type: "ITEM_ADDED_TO_CART"; payload: number }
-    | { type: "NEW_ITEM_ADDED_TO_CART"; payload: {title:string, price: number, quantity: number} };
+    | { type: "ITEM_ADDED_TO_CART"; payload: {id: number, count: number} };
 
 const updateCartItems = (cartItems, item, idx) => {
     //delete item
@@ -65,8 +64,8 @@ const updateTotalVars = (newCartItems) => {
 
 const updateOrder = (state, itemID, quantity) => {
     const {items, cartItems} = state;
-    const item = items.find(item => item.id === itemID);
-    const itemIndex = cartItems.findIndex(({id}) => id === itemID);
+    const item = items.find(item => item.id == itemID);
+    const itemIndex = cartItems.findIndex(({id}) => id == itemID);
     const cartItem = cartItems[itemIndex];
 
     const newItem = updateCartItem(item, cartItem, quantity);
@@ -152,11 +151,7 @@ const reducer = (state = initialState, action:actionType) => {
             };
 
         case 'ITEM_ADDED_TO_CART':
-            return updateOrder(state, action.payload, 1);
-
-        case 'NEW_ITEM_ADDED_TO_CART':
-            console.log(action.payload);
-            return {...state};
+            return updateOrder(state, action.payload.id, action.payload.count);
 
         case 'ITEM_REMOVED_FROM_CART':
             return updateOrder(state, action.payload, -1);

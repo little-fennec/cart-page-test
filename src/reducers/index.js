@@ -46,8 +46,8 @@ const updateTotalVars = (newCartItems) => {
 };
 const updateOrder = (state, itemID, quantity) => {
     const { items, cartItems } = state;
-    const item = items.find(item => item.id === itemID);
-    const itemIndex = cartItems.findIndex(({ id }) => id === itemID);
+    const item = items.find(item => item.id == itemID);
+    const itemIndex = cartItems.findIndex(({ id }) => id == itemID);
     const cartItem = cartItems[itemIndex];
     const newItem = updateCartItem(item, cartItem, quantity);
     const newCartItems = updateCartItems(cartItems, newItem, itemIndex);
@@ -100,10 +100,7 @@ const reducer = (state = initialState, action) => {
         case 'FETCH_ITEMS_FAILURE':
             return Object.assign(Object.assign({}, state), { loading: false, error: action.payload });
         case 'ITEM_ADDED_TO_CART':
-            return updateOrder(state, action.payload, 1);
-        case 'NEW_ITEM_ADDED_TO_CART':
-            console.log(action.payload);
-            return Object.assign({}, state);
+            return updateOrder(state, action.payload.id, action.payload.count);
         case 'ITEM_REMOVED_FROM_CART':
             return updateOrder(state, action.payload, -1);
         case 'ALL_ITEMS_REMOVED_FROM_CART':

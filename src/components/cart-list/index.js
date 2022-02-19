@@ -30,7 +30,7 @@ const CartList = (props) => {
     useEffect(() => {
         itemsRequested();
         StoreService.getItems()
-            .then(res => itemsLoaded(res))
+            .then(res => itemsLoaded(res.items))
             .catch((err) => itemsError(err));
     },[]);
 

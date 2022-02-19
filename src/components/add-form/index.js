@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
-import {newItemAddedToCart} from "../../actions";
+import {itemAddedToCart, itemsLoaded, itemsRequested} from "../../actions";
+import WithStoreService from "../hoc";
 import './add-form.scss';
 import img from './lapka.png';
 
@@ -65,6 +66,8 @@ const useInput = (initialValue, validations) => {
 
     return {
         value,
+        setValue,
+        setFocus,
         onChange,
         onBlur,
         isFocus,
@@ -72,20 +75,45 @@ const useInput = (initialValue, validations) => {
     }
 };
 
-const AddForm = ({newItemAddedToCart}) => {
+const AddForm = ({StoreService, itemAddedToCart, itemsRequested, itemsLoaded}) => {
     const title = useInput('',{isEmpty: true});
     const price = useInput('',{isEmpty: true, errorInteger: true});
     const quantity = useInput('',{isEmpty: true, errorInteger: true});
     const newItem = {
         title: title.value,
-        price: price.value,
-        quantity: quantity.value
+        price: +price.value,
+        count: +quantity.value,
+        src: '/images/cat_paw.jpg',
+        bestseller: false
+    };
+    const resetForm = () => {
+            title.setValue('');
+            title.setFocus(false);
+            price.setValue('');
+            price.setFocus(false);
+            quantity.setValue('');
+            quantity.setFocus(false);
+    };
+    const onSubmit = (e, newItem) => {
+        e.preventDefault();
+        StoreService.postItem(newItem)
+            .then(addedItem => {
+                itemsRequested();
+                StoreService.getItems()
+                    .then(res => itemsLoaded(res.items))
+                    .then(res => {
+                        itemAddedToCart(addedItem.item.id, newItem.count);
+                    });
+            });
+        resetForm();
+        document.documentElement.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        })
     };
 
     return (
-            <form className="add-form round-corner" onSubmit={(e) => {
-                e.preventDefault();
-                newItemAddedToCart(newItem);}}>
+            <form className="add-form round-corner" id="form-with-new-item" onSubmit={(e) => onSubmit(e, newItem)}>
                     <div className="product-item__wrap-img"><img className="round-corner" src={img} alt=""/></div>
                     <div className="wrap-form-group">
 
@@ -122,6 +150,10 @@ const AddForm = ({newItemAddedToCart}) => {
     )
 };
 
-export default connect(null,{
-    newItemAddedToCart
-})(AddForm);
+const mapDispatchToProps = {
+    itemAddedToCart,
+    itemsLoaded,
+    itemsRequested
+};
+
+export default WithStoreService()(connect(null, mapDispatchToProps)(AddForm));

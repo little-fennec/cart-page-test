@@ -7,7 +7,6 @@ import AddForm from '../add-form';
 import './app.scss';
 import imgKitty from '../../images/kitty.jpg';
 
-
 const App = () => {
     return (
         <div className="container">

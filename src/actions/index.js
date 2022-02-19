@@ -16,8 +16,7 @@ const itemsError = (error) => {
     }
 };
 
-const itemAddedToCart = (id) => ({type: 'ITEM_ADDED_TO_CART', payload: id});
-const newItemAddedToCart = (data) => ({type: 'NEW_ITEM_ADDED_TO_CART', payload: data});
+const itemAddedToCart = (id, count=1) => ({type: 'ITEM_ADDED_TO_CART', payload: {id: id, count:count}});
 const itemRemovedFromCart = (id) => ({type: 'ITEM_REMOVED_FROM_CART', payload: id});
 const allItemsRemovedFromCart = (id) => ({type: 'ALL_ITEMS_REMOVED_FROM_CART', payload: id});
 const clearCart = () => ({type: 'CLEAR_CART'});
@@ -27,7 +26,6 @@ export {
     itemsRequested,
     itemsError,
     itemAddedToCart,
-    newItemAddedToCart,
     itemRemovedFromCart,
     allItemsRemovedFromCart,
     clearCart
