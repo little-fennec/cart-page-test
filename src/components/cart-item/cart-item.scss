@@ -15,6 +15,7 @@
     margin-bottom: 1.5rem;
     justify-content: space-between;
     align-items: center;
+    position: relative;
     &:hover {
         box-shadow: $box-shadow_hover;
     }
@@ -33,12 +34,22 @@
     &__cost {
         width: 10%;
         text-align: center;
+
+        @media (max-width: 767px) {
+            width: 15%;
+        }
     }
     .close {
         opacity: 0.3;
         width: 1rem;
         height: 1rem;
         cursor: pointer;
+
+        @media (max-width: 767px) {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+        }
     }
     .close:hover {
         opacity: 1;

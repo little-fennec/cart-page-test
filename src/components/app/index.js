@@ -5,7 +5,6 @@ import Bestsellers from '../bestsellers';
 import AddForm from '../add-form';
 
 import './app.scss';
-import imgKitty from '../../images/kitty.jpg';
 
 const App = () => {
     return (
@@ -13,13 +12,7 @@ const App = () => {
             <CartHeader />
             <CartList/>
             <Bestsellers/>
-            <div className="section">
-                <div className="section__title">Add your own item !</div>
-                <div className="d-flex">
-                    <AddForm/>
-                    <img src={imgKitty} alt="kitty"/>
-                </div>
-            </div>
+            <AddForm/>
         </div>
     )
 };

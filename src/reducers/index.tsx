@@ -31,7 +31,17 @@ const updateCartItems = (cartItems, item, idx) => {
     ];
 };
 
-const updateCartItem = (item, cartItem: any = {}, quantity) => {
+
+type cartItem = {
+    id?: number ,
+    title?: string,
+    price?: number,
+    count?: number,
+    totalPrice?: number,
+    src?: string ;
+}
+
+const updateCartItem = (item, cartItem: cartItem = {}, quantity) => {
     const {
         id = item.id,
         title = item.title,

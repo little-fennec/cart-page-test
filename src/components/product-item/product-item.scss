@@ -26,5 +26,10 @@
         bottom: 0.8rem;
         right: 0.8rem;
     }
+    @media (max-width: 767px) {
+        width: 60%;
+        margin: 0.5rem auto;
+
+    }
 }
 

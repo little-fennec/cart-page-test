@@ -7,7 +7,7 @@ const Bestsellers = () => {
     return (
         <div className="bestsellers section">
             <div className="section__title">Bestsellers</div>
-           <ProductList/>
+           <ProductList bestsellers={true}/>
         </div>
     )
 };

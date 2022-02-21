@@ -16,3 +16,8 @@ a {
   margin-bottom: 2rem;
 }
 
+@media (max-width: 767px) {
+  html {
+    font-size: 0.8rem;
+  }
+}

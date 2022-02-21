@@ -12,13 +12,16 @@ import './product-list.scss';
 const ProductList = ({items, loading, error, StoreService, itemsLoaded, itemsError, itemsRequested, itemAddedToCart}) => {
 
     useEffect(() => {
-        itemsRequested();
         StoreService.getItems()
-            .then(res => {
-                itemsLoaded(res.items);
-            } )
-            .catch((err) => itemsError(err));
+            .then(data => {
+                let {items} = JSON.parse(data);
+                itemsLoaded(items);
+            })
+            .catch(error => {
+                itemsError(error);
+            });
     },[]);
+
     if (loading) {
         return <Spinner/>
     }
@@ -26,6 +29,7 @@ const ProductList = ({items, loading, error, StoreService, itemsLoaded, itemsErr
         console.log(error);
         return <Error/>
     }
+
     return (
         <div className="product-list">
             {
@@ -39,15 +43,20 @@ const ProductList = ({items, loading, error, StoreService, itemsLoaded, itemsErr
     )
 };
 
-const mapStateToProps = (state) => {
-    const filteredItems = state.items.filter((item) => item.bestseller === true);
+const mapStateToProps = (state, props) => {
+    let filteredItems = [];
+    if (props.bestsellers) {
+         filteredItems = state.items.filter((item) => item.bestseller === true);
+    } else {
+        filteredItems = state.items;
+    }
+
     return {
         items: filteredItems,
         loading: state.loading,
         error: state.error
     }
 };
-
 
 const mapDispatchToProps = {
     itemsLoaded,

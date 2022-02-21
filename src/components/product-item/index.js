@@ -1,6 +1,5 @@
 import React from 'react';
 import './product-item.scss';
-import img from './dog-bed.jpg';
 
 const ProductItem = ({cartItem, onAddToCart}) => {
     const { title, price, src } = cartItem;

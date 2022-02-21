@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {itemAddedToCart, itemsLoaded, itemsRequested} from "../../actions";
 import WithStoreService from "../hoc";
 import './add-form.scss';
+import imgKitty from './kitty.jpg';
 import img from './lapka.png';
 
 const useValidation = (value, validations) => {
@@ -98,11 +99,14 @@ const AddForm = ({StoreService, itemAddedToCart, itemsRequested, itemsLoaded}) =
         e.preventDefault();
         StoreService.postItem(newItem)
             .then(addedItem => {
-                itemsRequested();
+                const {item} = JSON.parse(addedItem);
                 StoreService.getItems()
-                    .then(res => itemsLoaded(res.items))
+                    .then(data => {
+                        const {items} = JSON.parse(data);
+                        itemsLoaded(items)
+                    })
                     .then(res => {
-                        itemAddedToCart(addedItem.item.id, newItem.count);
+                        itemAddedToCart(item.id, newItem.count);
                     });
             });
         resetForm();
@@ -113,40 +117,46 @@ const AddForm = ({StoreService, itemAddedToCart, itemsRequested, itemsLoaded}) =
     };
 
     return (
-            <form className="add-form round-corner" id="form-with-new-item" onSubmit={(e) => onSubmit(e, newItem)}>
-                    <div className="product-item__wrap-img"><img className="round-corner" src={img} alt=""/></div>
-                    <div className="wrap-form-group">
+        <div className="section">
+            <div className="section__title">Add your own item !</div>
+            <div className="wrap-add-form">
+                <form className="add-form round-corner" id="form-with-new-item" onSubmit={(e) => onSubmit(e, newItem)}>
+                        <div className="product-item__wrap-img"><img className="round-corner" src={img} alt=""/></div>
+                        <div className="wrap-form-group">
 
-                        <div className="form-group">
-                            <label htmlFor="title">Item title</label>
-                            <div className="wrap-input">
-                                {(title.isFocus && !title.inputValid) && <div className="input-error">{title.errorMsg}</div>}
-                                <input onChange={e => title.onChange(e)} onBlur={e => title.onBlur(e)} value={title.value}
-                                       type="text" id="title" name="title" maxLength="30" placeholder="Type item title..."/>
+                            <div className="form-group">
+                                <label htmlFor="title">Item title</label>
+                                <div className="wrap-input">
+                                    {(title.isFocus && !title.inputValid) && <div className="input-error">{title.errorMsg}</div>}
+                                    <input onChange={e => title.onChange(e)} onBlur={e => title.onBlur(e)} value={title.value}
+                                           type="text" id="title" name="title" maxLength="30" placeholder="title"/>
+                                </div>
                             </div>
-                        </div>
 
-                        <div className="form-group">
-                            <label htmlFor="price">Item price, $</label>
-                            <div className="wrap-input">
-                                {(price.isFocus && !price.inputValid) && <div className="input-error">{price.errorMsg}</div>}
-                                <input onChange={e => price.onChange(e)} onBlur={e => price.onBlur(e)} value={price.value}
-                                   type="text" id="price" name="price" maxLength="4" placeholder="price..."/>
+                            <div className="form-group">
+                                <label htmlFor="price">Item price, $</label>
+                                <div className="wrap-input">
+                                    {(price.isFocus && !price.inputValid) && <div className="input-error">{price.errorMsg}</div>}
+                                    <input onChange={e => price.onChange(e)} onBlur={e => price.onBlur(e)} value={price.value}
+                                       type="text" id="price" name="price" maxLength="4" placeholder="price"/>
+                                </div>
                             </div>
-                        </div>
 
-                        <div className="form-group">
-                            <label htmlFor="quantity">Item quantity</label>
-                            <div className="wrap-input">
-                                {(quantity.isFocus && !quantity.inputValid) && <div className="input-error">{quantity.errorMsg}</div>}
-                                <input onChange={e => quantity.onChange(e)} onBlur={e => quantity.onBlur(e)} value={quantity.value}
-                                   type="text" id="quantity" name="quantity" maxLength="3" placeholder="quantity..."/>
+                            <div className="form-group">
+                                <label htmlFor="quantity">Item quantity</label>
+                                <div className="wrap-input">
+                                    {(quantity.isFocus && !quantity.inputValid) && <div className="input-error">{quantity.errorMsg}</div>}
+                                    <input onChange={e => quantity.onChange(e)} onBlur={e => quantity.onBlur(e)} value={quantity.value}
+                                       type="text" id="quantity" name="quantity" maxLength="3" placeholder="quantity"/>
+                                </div>
                             </div>
-                        </div>
 
-                        <button disabled={!title.inputValid || !price.inputValid || !quantity.inputValid} className="btn add-item">Add Item</button>
-                    </div>
-            </form>
+                            <button disabled={!title.inputValid || !price.inputValid || !quantity.inputValid} className="btn add-item">Add Item</button>
+                        </div>
+                </form>
+                <img src={imgKitty} alt="kitty"/>
+            </div>
+        </div>
     )
 };
 
