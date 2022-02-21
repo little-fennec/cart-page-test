@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Screen <CartList/> renders correctly  1`] = `
+<div
+  className="cart-list"
+>
+  <div
+    className="cart-list__clear-all"
+    onClick={[Function]}
+  >
+    Clear all
+  </div>
+  <div
+    className="cart-summary"
+  >
+    <div
+      className="cart-summary__title"
+    >
+      Cart Summary
+    </div>
+    <div
+      className="cart-summary__row"
+    >
+      <span>
+        Total items
+      </span>
+      <span />
+    </div>
+    <div
+      className="cart-summary__row free"
+    >
+      <span>
+        Free delivery
+      </span>
+      <span>
+        0$
+      </span>
+    </div>
+    <div
+      className="cart-summary__row"
+    >
+      <span>
+        Total price
+      </span>
+      <span>
+        $
+      </span>
+    </div>
+    <div
+      className="btn"
+    >
+      Proceed to checkout
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Screen/ServiceListingScreen renders correctly  1`] = `
+<div
+  className="cart-list"
+>
+  <div
+    className="cart-list__clear-all"
+    onClick={[Function]}
+  >
+    Clear all
+  </div>
+  <div
+    className="cart-summary"
+  >
+    <div
+      className="cart-summary__title"
+    >
+      Cart Summary
+    </div>
+    <div
+      className="cart-summary__row"
+    >
+      <span>
+        Total items
+      </span>
+      <span />
+    </div>
+    <div
+      className="cart-summary__row free"
+    >
+      <span>
+        Free delivery
+      </span>
+      <span>
+        0$
+      </span>
+    </div>
+    <div
+      className="cart-summary__row"
+    >
+      <span>
+        Total price
+      </span>
+      <span>
+        $
+      </span>
+    </div>
+    <div
+      className="btn"
+    >
+      Proceed to checkout
+    </div>
+  </div>
+</div>
+`;
