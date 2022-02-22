@@ -20,7 +20,7 @@ describe('Testing <ProductItem/>', () => {
 
     beforeEach(() => {
         window.HTMLElement.prototype.scrollTo = function() {};
-        component =  shallow(<ProductItem cartItem={cartItem} onAddToCart={mockCallBackAddToCart}/>);
+        component =  shallow(<ProductItem item={cartItem} onAddToCart={mockCallBackAddToCart}/>);
     });
 
     it('Test click on button AddToCart', () => {

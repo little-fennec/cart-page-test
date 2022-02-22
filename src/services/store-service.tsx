@@ -5,7 +5,7 @@ export default class StoreService {
 
     _apiBase = '/api';
 
-     getResource(url) {
+     getResource(url:string) {
 
         return new Promise((resolve, reject) => {
             let xhr = new XMLHttpRequest();
@@ -29,7 +29,7 @@ export default class StoreService {
         // return await res.json();
     }
 
-    async postItem(item) {
+    async postItem(item:{}) {
 
         return new Promise((resolve, reject) => {
             let xhr = new XMLHttpRequest();

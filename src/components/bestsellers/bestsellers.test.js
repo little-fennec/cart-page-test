@@ -3,7 +3,7 @@ import Bestsellers from './index';
 import {render} from "@testing-library/react";
 import { Provider } from 'react-redux';
 import StoreService from '../../services/store-service';
-import StoreServiceContext from '../../components/store-service-context';
+import StoreServiceContext from '../store-service-context/index';
 import store from '../../store';
 import {toBeInTheDocument} from '@testing-library/jest-dom';
 

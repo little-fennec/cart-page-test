@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductList from '../product-list'
+import ProductList from '../product-list/index'
 import './bestsellers.scss';
 
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import StoreServiceContext from '../store-service-context';
+import StoreServiceContext from '../store-service-context/index';
 import StoreService from "../../services/store-service";
 
 const WithStoreService = () => (Wrapped) => {

@@ -1,8 +1,11 @@
 import React from 'react';
 import './cart-summary.scss';
 
-
-const CartSummary = ({totalCount, totalPrice}) => {
+type Props = {
+    totalCount: number,
+    totalPrice: number
+};
+const CartSummary = ({totalCount, totalPrice}:Props) => {
     return (
         <div className="cart-summary">
             <div className="cart-summary__title">Cart Summary</div>

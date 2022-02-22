@@ -5,7 +5,7 @@ import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
 import StoreService from '../../services/store-service';
-import StoreServiceContext from '../../components/store-service-context';
+import StoreServiceContext from '../store-service-context/index';
 import configureMockStore from 'redux-mock-store';
 
 const storeService = new StoreService();

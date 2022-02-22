@@ -1,18 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import CartItem from '../cart-item';
+import CartItem from '../cart-item/index';
 import CartSummary from '../cart-summary';
 import {connect} from 'react-redux';
-import WithStoreService from '../hoc';
-import {itemsLoaded, itemsRequested, itemsError, itemAddedToCart, allItemsRemovedFromCart, itemRemovedFromCart, clearCart} from "../../actions";
+import WithStoreService from '../hoc/index';
+import {itemsLoaded, itemsRequested, itemsError, itemAddedToCart, allItemsRemovedFromCart, itemRemovedFromCart, clearCart} from "../../actions/index";
 
-import Spinner from '../spinner';
-import EmptyBusket from '../empty-busket';
+import Spinner from '../spinner/index';
+import EmptyBusket from '../empty-busket/index';
 import Error from '../error';
 
 import './cart-list.scss';
 
-
-const CartList = (props) => {
+type Props = {
+    cartItems: CartItem[],
+    orderTotalPrice:number,
+    orderTotalCount:number,
+    onIncrease: (id:ID, count?:number) => actionType;
+    loading: boolean,
+    error: string | null,
+    StoreService:any,
+    itemsLoaded:(newItems: Item[]) => actionType,
+    itemsError:(error: string|null) => actionType,
+    itemsRequested:() => actionType,
+    onDecrease: (id:ID) => actionType,
+    onDelete:(id:ID) => actionType,
+    deleteAll: () => actionType
+}
+const CartList = (props:Props) => {
     const {cartItems,
         orderTotalPrice,
         orderTotalCount,
@@ -73,7 +87,7 @@ const CartList = (props) => {
 //         cartItems: state.cartItems,
 //     }
 // };
-const mapStateToProps = ({cartItems, error, loading, orderTotalPrice, orderTotalCount}) => {
+const mapStateToProps = ({cartItems, error, loading, orderTotalPrice, orderTotalCount}:State) => {
     return {
         cartItems,
         error,
@@ -91,7 +105,7 @@ const mapDispatchToProps = {
     onDecrease: itemRemovedFromCart,
     onDelete: allItemsRemovedFromCart,
     deleteAll:  clearCart
-}
+};
 
 
 export default WithStoreService()(connect(mapStateToProps, mapDispatchToProps)(CartList));

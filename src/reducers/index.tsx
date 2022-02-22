@@ -1,13 +1,7 @@
-type actionType  =
-    | { type: "FETCH_ITEMS_SUCCESS"; payload: number }
-    | { type: "FETCH_ITEMS_REQUEST"; payload: number }
-    | { type: "FETCH_ITEMS_FAILURE"; payload: string }
-    | { type: "ITEM_REMOVED_FROM_CART"; payload: number }
-    | { type: "ALL_ITEMS_REMOVED_FROM_CART"; payload: number}
-    | { type: "CLEAR_CART" }
-    | { type: "ITEM_ADDED_TO_CART"; payload: {id: number, count: number} };
 
-const updateCartItems = (cartItems, item, idx) => {
+type UpdateCartItems = (cartItems:CartItem[], item:CartItem, idx:number) => CartItem[];
+
+const updateCartItems: UpdateCartItems = (cartItems, item, idx) => {
     //delete item
     if (item.count === 0) {
         return [
@@ -32,16 +26,9 @@ const updateCartItems = (cartItems, item, idx) => {
 };
 
 
-type cartItem = {
-    id?: number ,
-    title?: string,
-    price?: number,
-    count?: number,
-    totalPrice?: number,
-    src?: string ;
-}
+type UpdateCartItem = (item: Item|undefined, cartItem: CartItem, quantity: number) => CartItem;
 
-const updateCartItem = (item, cartItem: cartItem = {}, quantity) => {
+const updateCartItem: UpdateCartItem = (item={id:1, price:0}, cartItem = {id: 1, count:0, totalPrice:0}, quantity) => {
     const {
         id = item.id,
         title = item.title,
@@ -58,7 +45,9 @@ const updateCartItem = (item, cartItem: cartItem = {}, quantity) => {
     };
 };
 
-const updateTotalVars = (newCartItems) => {
+type UpdateTotalVars = (newCartItems:CartItem[]) => {orderTotalPrice:number,orderTotalCount:number};
+
+const updateTotalVars: UpdateTotalVars = (newCartItems) => {
     let orderTotalPrice = 0;
     let orderTotalCount = 0;
     newCartItems.forEach((item) => {
@@ -71,8 +60,9 @@ const updateTotalVars = (newCartItems) => {
     }
 };
 
+type UpdateOrder = (state:State, itemID:string|number, quantity:number) => State;
 
-const updateOrder = (state, itemID, quantity) => {
+const updateOrder:UpdateOrder = (state, itemID, quantity) => {
     const {items, cartItems} = state;
     const item = items.find(item => item.id == itemID);
     const itemIndex = cartItems.findIndex(({id}) => id == itemID);
@@ -91,7 +81,9 @@ const updateOrder = (state, itemID, quantity) => {
         orderTotalCount: orderTotalCount
     };
 };
-const clearCart = (state) => {
+
+type ClearCart = (state:State) => State;
+const clearCart:ClearCart = (state) => {
     return {
         ...state,
         cartItems: [],
@@ -100,7 +92,7 @@ const clearCart = (state) => {
     };
 };
 
-const initialState = {
+const initialState:State = {
     items: [],
     loading: true,
     cartItems: [
@@ -168,7 +160,7 @@ const reducer = (state = initialState, action:actionType) => {
 
         case 'ALL_ITEMS_REMOVED_FROM_CART':
             const item = state.cartItems.find(({id}) => id === action.payload);
-            return updateOrder(state, action.payload, -item.count);
+            return updateOrder(state, action.payload, -item!.count);
 
         case 'CLEAR_CART':
             return clearCart(state);

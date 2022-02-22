@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
-import {itemAddedToCart, itemsLoaded, itemsRequested} from "../../actions";
-import WithStoreService from "../hoc";
+import {itemAddedToCart, itemsLoaded, itemsRequested} from "../../actions/index";
+import WithStoreService from "../hoc/index";
 import './add-form.scss';
 import imgKitty from './kitty.jpg';
 import img from './lapka.png';

@@ -1,8 +1,12 @@
 import React from 'react';
 import './product-item.scss';
 
-const ProductItem = ({cartItem, onAddToCart}) => {
-    const { title, price, src } = cartItem;
+type Props = {
+    item: Item,
+    onAddToCart:() => (id:ID, count?: number) => actionType
+};
+const ProductItem = ({item, onAddToCart}:Props) => {
+    const { title, price, src } = item;
     const addToCart = () => {
         onAddToCart();
         document.documentElement.scrollTo({
