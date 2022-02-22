@@ -1,4 +1,5 @@
 {
+  "homepage": "https://little-fennec.github.io/cart-page-test",
   "name": "cart-page",
   "version": "0.1.0",
   "private": true,
@@ -23,6 +24,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -53,6 +56,7 @@
     "@types/react-dom": "^17.0.11",
     "@types/react-redux": "^7.1.22",
     "@types/react-router-dom": "^5.3.3",
+    "gh-pages": "^3.2.3",
     "miragejs": "^0.1.43"
   }
 }
