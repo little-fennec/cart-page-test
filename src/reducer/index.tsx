@@ -26,9 +26,9 @@ const updateCartItems: UpdateCartItems = (cartItems, item, idx) => {
 };
 
 
-type UpdateCartItem = (item: Item|undefined, cartItem: CartItem, quantity: number) => CartItem;
+type UpdateCartItem = (item: Item|undefined, cartItem: any, quantity: number) => CartItem;
 
-const updateCartItem: UpdateCartItem = (item={id:1, price:0}, cartItem = {id: 1, count:0, totalPrice:0}, quantity) => {
+const updateCartItem: UpdateCartItem = (item={id:1, price:0}, cartItem = {}, quantity) => {
     const {
         id = item.id,
         title = item.title,
@@ -127,7 +127,7 @@ const initialState:State = {
 };
 
 const reducer = (state = initialState, action:actionType) => {
-    // console.log(action.type);
+    console.log(action.type);
     switch (action.type) {
         case 'FETCH_ITEMS_REQUEST':
             return {
