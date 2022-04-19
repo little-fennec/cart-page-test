@@ -82,11 +82,6 @@ const CartList = (props:Props) => {
 };
 
 
-// const mapStateToProps = (state) => {
-//     return {
-//         cartItems: state.cartItems,
-//     }
-// };
 const mapStateToProps = ({cartItems, error, loading, orderTotalPrice, orderTotalCount}:State) => {
     return {
         cartItems,

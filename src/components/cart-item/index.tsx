@@ -12,7 +12,7 @@ const CartItem = ({cartItem, onDelete, onIncrease, onDecrease}: Props) => {
     const {id, title, src, count, totalPrice } = cartItem;
     return (
         <div className="cart-item round-corner">
-            <div className="cart-item__wrap-img"><img className="round-corner" src={src} alt=""/></div>
+            <div className="cart-item__wrap-img"><img className="round-corner" src={process.env.PUBLIC_URL + src} alt=""/></div>
             <div className="cart-item__description">{title}</div>
             <div className="cart-item__quantity">
                 <div className="counter">

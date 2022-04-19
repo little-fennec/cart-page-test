@@ -100,7 +100,7 @@ const initialState:State = {
             "id": 1,
             "title": "Velvet pet bed",
             "price": 90,
-            "src": "https://i2.piccy.info/i9/7f41d85d930863a0655dab52b8b765ae/1645605128/6436/1459510/dog_bed_240.jpg",
+            "src": "/images/dog-bed.jpg",
             "count": 1,
             "totalPrice": 90
         },
@@ -108,7 +108,7 @@ const initialState:State = {
             "id": 2,
             "title": "Trixie koala dog toy",
             "price": 25,
-            "src": "https://i2.piccy.info/i9/e9428ad11f1541f19ce68f19764de100/1645605175/7549/1459510/koala_240.jpg",
+            "src": "/images/koala.jpg",
             "count": 1,
             "totalPrice": 25
         },
@@ -116,7 +116,7 @@ const initialState:State = {
             "id": 3,
             "title": "Mucki bird grass",
             "price": 5,
-            "src": "https://i2.piccy.info/i9/fa7829cb58744754844ccb3c4d397d4d/1645605155/9854/1459510/grass_240.jpg",
+            "src": "/images/grass.jpg",
             "count": 1,
             "totalPrice": 5
         },

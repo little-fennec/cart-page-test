@@ -17,7 +17,7 @@ const ProductItem = ({item, onAddToCart}:Props) => {
 
     return (
         <div className="product-item round-corner">
-            <div className="product-item__wrap-img"><img className="round-corner" src={src} alt=""/></div>
+            <div className="product-item__wrap-img"><img className="round-corner" src={process.env.PUBLIC_URL + src} alt=""/></div>
             <div className="product-item__inf">
                 <div className="product-item__description">{title}</div>
                 <span className="product-item__cost">{price}$</span>
