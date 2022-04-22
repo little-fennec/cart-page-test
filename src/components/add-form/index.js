@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {itemAddedToCart, itemsLoaded, itemsRequested} from "../../actions/index";
-import WithStoreService from "../hoc/index";
 import './add-form.scss';
 import imgKitty from './kitty.jpg';
 import img from './lapka.png';
+import {StoreService} from '../../services/store-service'
 
 const useValidation = (value, validations) => {
     const [isEmpty, setEmpty] = useState(true);
@@ -79,7 +79,7 @@ const useInput = (initialValue, validations) => {
     }
 };
 
-const AddForm = ({StoreService, itemAddedToCart, itemsRequested, itemsLoaded}) => {
+const AddForm = ({ itemAddedToCart, itemsRequested, itemsLoaded}) => {
     const title = useInput('',{isEmpty: true});
     const price = useInput('',{isEmpty: true, errorInteger: true});
     const quantity = useInput('',{isEmpty: true, errorInteger: true});
@@ -169,4 +169,4 @@ const mapDispatchToProps = {
     itemsRequested
 };
 
-export default WithStoreService()(connect(null, mapDispatchToProps)(AddForm));
+export default connect(null, mapDispatchToProps)(AddForm);

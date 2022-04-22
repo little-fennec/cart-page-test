@@ -3,7 +3,7 @@ import './product-item.scss';
 
 type Props = {
     item: Item,
-    onAddToCart:() => (id:ID, count?: number) => actionType
+    onAddToCart: () => void
 };
 const ProductItem = ({item, onAddToCart}:Props) => {
     const { title, price, src } = item;

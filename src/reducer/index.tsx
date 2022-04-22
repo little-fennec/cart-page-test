@@ -1,3 +1,7 @@
+import {CartItem} from "../models/cart-item.model";
+import {Item} from "../models/item.model";
+import {State} from "../models/state.model";
+import {ActionType} from "../actions";
 
 type UpdateCartItems = (cartItems:CartItem[], item:CartItem, idx:number) => CartItem[];
 
@@ -26,23 +30,26 @@ const updateCartItems: UpdateCartItems = (cartItems, item, idx) => {
 };
 
 
-type UpdateCartItem = (item: Item|undefined, cartItem: any, quantity: number) => CartItem;
+type CreateOrUpdateCartItem = (item: Item, cartItem: CartItem|null, quantity: number) => CartItem;
 
-const updateCartItem: UpdateCartItem = (item={id:1, price:0}, cartItem = {}, quantity) => {
-    const {
-        id = item.id,
-        title = item.title,
-        price = item.price,
-        count = 0,
-        totalPrice = 0,
-        src = item.src} = cartItem;
+const createOrUpdateCartItem: CreateOrUpdateCartItem = (item, cartItem, quantity) => {
+    if (!cartItem) {
+        return {
+            id: item.id,
+            title: item.title,
+            price: item.price,
+            count: quantity,
+            totalPrice: item.price * quantity,
+            src: item.src
+        };
+    }
+
+    const itemCount = cartItem.count + quantity;
     return {
-        id,
-        title,
-        src,
-        count: count +quantity,
-        totalPrice: (count + quantity)*price
-    };
+        ...cartItem,
+        count: itemCount,
+        totalPrice: itemCount * cartItem.price,
+    }
 };
 
 type UpdateTotalVars = (newCartItems:CartItem[]) => {orderTotalPrice:number,orderTotalCount:number};
@@ -68,7 +75,7 @@ const updateOrder:UpdateOrder = (state, itemID, quantity) => {
     const itemIndex = cartItems.findIndex(({id}) => id == itemID);
     const cartItem = cartItems[itemIndex];
 
-    const newItem = updateCartItem(item, cartItem, quantity);
+    const newItem = createOrUpdateCartItem(item, cartItem, quantity);
 
     const newCartItems = updateCartItems(cartItems, newItem, itemIndex);
 
@@ -82,7 +89,7 @@ const updateOrder:UpdateOrder = (state, itemID, quantity) => {
     };
 };
 
-type ClearCart = (state:State) => State;
+type ClearCart = (state: State) => State;
 const clearCart:ClearCart = (state) => {
     return {
         ...state,
@@ -92,7 +99,7 @@ const clearCart:ClearCart = (state) => {
     };
 };
 
-const initialState:State = {
+const initialState: State = {
     items: [],
     loading: true,
     cartItems: [
@@ -126,7 +133,7 @@ const initialState:State = {
     error: null
 };
 
-const reducer = (state = initialState, action:actionType) => {
+const reducer = (state = initialState, action:ActionType) => {
     console.log(action.type);
     switch (action.type) {
         case 'FETCH_ITEMS_REQUEST':
